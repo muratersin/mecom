@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Mecom.Models.BillOfSale>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.explanation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isPaid)
+        </th>
+        <th>
+            Ürün Adedi
+        </th>
+        <th colspan="3">
+            İşlemler
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.explanation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isPaid)
+        </td>
+        <td>
+            @item.asset.Count.ToString()
+        </td>
+        <td>
+            <a href="@Url.Action("SatisFaturasiSil", "Faturalar")/@item.id"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+        <td>
+            <a href="@Url.Action("SatisFaturasiDuzenle", "Faturalar")/@item.id"><span class="glyphicon glyphicon-edit"></span></a>
+        </td>
+        <td>
+            <a href="@Url.Action("SatisFaturasiYazdir", "Faturalar")/@item.id"><span class="glyphicon glyphicon-print"></span></a>
+        </td>
+    </tr>
+}
+
+</table>

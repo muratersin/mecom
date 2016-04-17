@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Mecom.Models.Payment>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.purchaseInvoice.explanation)
+        </th>
+        <th>
+            Faturaya Eklendi
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pk)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.purchaseInvoice.explanation)
+        </td>
+        <td>
+           @if(item.purchaseInvoiceId != null)
+           {
+               @:Evet
+           } else
+           {
+               @:Hayır
+           }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pk)
+        </td>
+        <td><a href="@Url.Action("GiderSil","Giderler")\@item.id"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td><a href="@Url.Action("GiderDuzenle","Giderler")\@item.id"><span class="glyphicon glyphicon-edit"></span></a></td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Mecom.Models.PurchaseInvoice>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplierId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.explanation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isPaid)
+        </th>
+        <th>
+            Ürün Adedi
+        </th>
+        <th>
+            Son Ödeme Tarihi
+        </th>
+        <th colspan="2">İşlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplier.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.explanation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastPaymentDate)
+        </td>
+        <td>
+            <a href="@Url.Action("AlimFaturasiSil", "Faturalar")\@item.id"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+        <td>
+            <a href="@Url.Action("AlimFaturasiDuzenle", "Faturalar")\@item.id"><span class="glyphicon glyphicon-edit"></span></a>
+        </td>
+    </tr>
+}
+
+</table>

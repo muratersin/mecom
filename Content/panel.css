@@ -1,0 +1,49 @@
+﻿#panelMenu {
+    border-right:2px solid silver;
+    height: 100%;
+    background-color: #f8f8f8;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+#logo {
+    height:25px;
+}
+
+.nav-pills > li > a {
+    border-radius: 0px;
+    width: 100%!important;
+}
+
+.stats {
+    width:100%;
+    border:1px solid silver;
+    margin: 5px;
+    padding: 5px;
+    display:block;
+    background-color:#417178;
+}
+
+.bx {
+    width:160px;
+    height:160px;
+    border: 1px solid black;
+    display:inline-block;
+    margin-right:8px;
+    margin-left:22px;
+    background-color:white;
+    padding:4px;
+    text-align: center;
+}
+
+.head {
+    color:brown;
+    font-weight:bolder;
+}
+
+.num {
+    font-size: 60px;
+}

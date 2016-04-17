@@ -1,0 +1,92 @@
+﻿@model Mecom.Models.Staff
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Çalışanlar";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<h3 style="text-align:center">Çalışanlar</h3>
+<div ng-app="SearchApp" ng-controller="staffSearchController">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" data-toggle="modal" data-target=".addStaff" type="button">Çalışan Ekle</button>
+        </span>
+        <input type="text" class="form-control" ng-model="searchText" placeholder="Ara..." />
+    </div>
+
+    <br />
+
+    <div class="modal fade addStaff" tabindex="-1" role="dialog" aria-labelledby="AddStaff">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                @using (Html.BeginForm("CalisanEkle", "Calisanlar"))
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Müşteri Ekle</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", maxLength = "50", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", maxLength = "50", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", maxLength = "10", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", maxLength = "80", type = "email", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.profession, htmlAttributes: new { @class = "control-label col-md-4", maxLength = "80" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.profession, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.profession, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.salary, htmlAttributes: new { @class = "control-label col-md-4", maxLength = "80" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @Html.HiddenFor(model => model.userId, new { htmlAttributes = new { @class = "form-control", @Value = User.Identity.GetUserId() } })
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-7">
+                                <input type="submit" value="Kaydet" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @Html.Action("GetAllStaff")
+</div>

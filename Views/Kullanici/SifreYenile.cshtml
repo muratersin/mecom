@@ -1,0 +1,31 @@
+﻿@model Mecom.Models.ResetPasswordViewModel
+@{
+    ViewBag.Title = "SifreYenile";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="llg">
+    <img src="~/images/mecomLogo.png" class="logoo" />
+    @using (Html.BeginForm("SifreYenile", "Kullanici", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Code)
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+        </div>
+        <div class="form-group">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Şifre" })
+        </div>
+        <div class="form-group">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Şifre Tekrar" })
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Yenile" style="width:100%" />
+        </div>
+    }
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

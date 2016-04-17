@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Güncel";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="stats">
+    <div class="bx">
+        <h5 class="head">Ödenmemiş Faturalar</h5>
+        <hr />
+        <span class="num">@ViewBag.odenmemis</span>
+    </div>
+    <div class="bx">
+        <h5 class="head">Ödenmiş Faturalar</h5>
+        <hr />
+        <span class="num">@ViewBag.odenmis</span>
+    </div>
+    <div class="bx">
+        <h5 class="head">Gecikmiş Faturalar</h5>
+        <hr />
+        <span class="num">@ViewBag.gecikmis</span>
+    </div>
+    <div class="bx">
+        <h5 class="head">Alımlar</h5>
+        <hr />
+        <span class="num">@ViewBag.alis</span>
+    </div>
+    <div class="bx">
+        <h5 class="head">Satışlar</h5>
+        <hr />
+        <span class="num">@ViewBag.satis</span>
+    </div>
+</div>
+<hr />
+<h2>Test</h2>
+<hr />
+<div class="summary">
+    <label for="Toplam Gelir">Bu Aylık Toplam Gelir: </label> @ViewBag.topgel
+    <br />
+    <label for="Toplam Gider">Bu Aylık Toplam Gider: </label> @ViewBag.topgid
+    <br />
+    <label for="Toplam Çalışan Sayısı">Çalışan Sayısı: </label> @ViewBag.calisan
+    <br />
+    <label for="Toplam Çalışan Sayısı">Müşteri Sayısı: </label> @ViewBag.musteri
+    <br />
+    <label for="Toplam Çalışan Sayısı">Tedarikçi Sayısı: </label> @ViewBag.tedarikci
+</div>
+<hr />
+

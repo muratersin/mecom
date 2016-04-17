@@ -1,0 +1,72 @@
+﻿@model Mecom.Models.Payment
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Giderler";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<h3 style="text-align:center">Ödemeler</h3>
+
+<div ng-app="SearchApp" ng-controller="paymentSearchController">
+
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" data-toggle="modal" data-target=".addPayment" type="button">Ödeme Ekle</button>
+        </span>
+        <input type="text" class="form-control" ng-model="searchText" placeholder="Ara..." />
+    </div>
+
+    <br />
+
+    <div class="modal fade addPayment" tabindex="-1" role="dialog" aria-labelledby="AppPayment">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                @using (Html.BeginForm("GiderEkle", "Giderler"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Ödeme Ekle</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.pk, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.pk, new { htmlAttributes = new { @class = "form-control", maxLength = "50", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.pk, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Alım Faturası</label>
+                            <div class="col-md-7">
+                                @Html.DropDownList("purchaseInvoiceId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.purchaseInvoiceId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", maxLength = "50", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(model => model.userId, new { htmlAttributes = new { @class = "form-control", @Value = User.Identity.GetUserId() } })
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Ekle" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @Html.Action("GetAllPayment")
+
+</div>
+
